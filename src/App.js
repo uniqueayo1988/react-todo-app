@@ -1,6 +1,7 @@
 import React from 'react';
 import Todos from './components/Todos'
 import './App.css';
+import Header from './components/layout/Header'
 
 // const App = () => {
 class App extends React.Component {
@@ -48,6 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Header/>
         <Todos 
           todos = {this.state.todos} 
           markComplete = {this.markComplete} 
