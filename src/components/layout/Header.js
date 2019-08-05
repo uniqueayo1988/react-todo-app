@@ -27,7 +27,6 @@ const headerStyle = {
 
 const linkStyle = {
   color: '#fff',
-  // cursor: 'pointer'
   textDecoration: 'none'
 }
 
