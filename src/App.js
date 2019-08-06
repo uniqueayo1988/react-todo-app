@@ -14,8 +14,9 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
-      .then(res => this.setState({ todos: res.data }))
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+      .then(res => this.setState({ todos: res.data }));
   }
 
   // Toggle Complete
@@ -32,21 +33,31 @@ class App extends React.Component {
   };
 
   // Delete Todo
+  // delTodo = id => {
+  //   this.setState({
+  //     todos: [...this.state.todos.filter(todo => todo.id !== id)]
+  //   });
+  // };
   delTodo = id => {
-    this.setState({
-      todos: [...this.state.todos.filter(todo => todo.id !== id)]
-    });
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(res => {
+        this.setState({
+          todos: [...this.state.todos.filter(todo => todo.id !== id)]
+        });
+      })
   };
-
   // Add Todo
   addTodo = title => {
-    axios.post('', {
-      title,
-      completed: false
-    })
-      .then(res => this.setState({
-      todos: [...this.state.todos]
-    }))
+    axios
+      .post("https://jsonplaceholder.typicode.com/todos", {
+        title,
+        completed: false
+      })
+      .then(res =>
+        this.setState({
+          todos: [...this.state.todos, res.data]
+        })
+      );
   };
 
   render() {
@@ -55,7 +66,8 @@ class App extends React.Component {
         <div className="App">
           <div className="container">
             <Header />
-            <Route exact
+            <Route
+              exact
               path="/"
               render={props => (
                 <React.Fragment>
