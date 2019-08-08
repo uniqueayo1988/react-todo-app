@@ -7,7 +7,6 @@ import About from './components/pages/About'
 import './App.css';
 import Header from './components/layout/Header'
 
-// const App = () => {
 class App extends React.Component {
   state = {
     todos: []
@@ -33,11 +32,6 @@ class App extends React.Component {
   };
 
   // Delete Todo
-  // delTodo = id => {
-  //   this.setState({
-  //     todos: [...this.state.todos.filter(todo => todo.id !== id)]
-  //   });
-  // };
   delTodo = id => {
     axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
       .then(res => {
